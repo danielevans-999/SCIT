@@ -69,7 +69,7 @@ class Student(models.Model):
     user = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
     
 class LogBook(models.Model):
-    date = models.DateTimeField(auto_now=False)
+    date = models.DateField(auto_now=False)
     description = models.TextField(max_length=500)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     
