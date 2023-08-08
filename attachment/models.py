@@ -41,6 +41,9 @@ class User(AbstractBaseUser):
     
     email = models.EmailField(max_length=100, unique = True)
     username = models.CharField(max_length=100)
+    registration_number = models.CharField(max_length=255, unique=True)
+    staff_number = models.CharField(max_length=255, unique=True)
+    employee_id = models.CharField(max_length=255, unique=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     
@@ -55,7 +58,6 @@ class User(AbstractBaseUser):
 class Student(models.Model):
     
     name =  models.CharField(max_length=255)
-    registration_number =  models.CharField(max_length=100, unique=True)
     date_of_birth = models.DateField()
     course = models.CharField(max_length=255)
     year = models.IntegerField(blank=True, null=True)
