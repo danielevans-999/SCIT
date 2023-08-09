@@ -90,3 +90,7 @@ class LogBook(models.Model):
     date = models.DateField(auto_now=False)
     description = models.TextField(max_length=500)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
+
+class Reports(models.Model):
+    pdf_file  =  models.FileField(upload_to='files/')
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
