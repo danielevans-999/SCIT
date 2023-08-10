@@ -11,10 +11,11 @@
 
 .sidebar {
   position: fixed;
-  left: 0;
+  left: -250px;
   width: 250px;
   height: 100%;
   background: #8eac50;
+  transition: all 0.5s ease;
 }
 
 .sidebar header {
@@ -30,7 +31,7 @@
   height: 100%;
   width: 100%;
   line-height: 65px;
-  font-size: 20px;
+  font-size: 16px;
   color: white;
   padding-left: 40px;
   box-sizing: border-box;
@@ -48,4 +49,138 @@
 
 .sidebar ul a i {
   margin-right: 16px;
+}
+
+#check {
+  display: none;
+}
+
+label #btn,
+label #cancel {
+  position: absolute;
+  cursor: pointer;
+  background: #8eac50;
+  border-radius: 3px;
+}
+
+label #btn {
+  left: 40px;
+  top: 25px;
+  font-size: 20px;
+  color: white;
+  padding: 6px 12px;
+  transition: all 0.5s ease;
+}
+
+label #cancel {
+  z-index: 1111;
+  left: -195px;
+  top: 17px;
+  font-size: 15px;
+  padding: 4px 9px;
+  transition: all 0.5s ease;
+}
+
+#check:checked ~ .sidebar {
+  left: 0;
+}
+
+#check:checked ~ label #btn {
+  left: 250px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#check:checked ~ label #cancel {
+  left: 195px;
+}
+
+#check:checked ~ section {
+  margin-left: 250px;
+}
+
+/* section {
+  background: url('https://images.unsplash.com/photo-1596005554384-d293674c91d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE0fHx8ZW58MHx8fHx8&w=1000&q=80');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  transition: all .5s;
+} */
+
+#logbook {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #fefdfd;
+}
+
+.card {
+  width: 500px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  padding: 60px;
+}
+
+#card-header {
+  width: 100%;
+  background: #8eac50;
+  color: white;
+  text-align: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 16px;
+  margin-bottom: 15px;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #8eac50;
+  border-radius: 5px;
+  outline: none;
+  background: rgba(142, 172, 80, 0.03);
+}
+
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #8eac50;
+  border-radius: 5px;
+  outline: none;
+  background: rgba(142, 172, 80, 0.03);
+}
+
+.form-group button {
+  background-color: #8eac50;
+  color: #ffffff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 50px;
+  width: 75px;
+  cursor: pointer;
+}
+
+.form-group #cancel {
+  color: #8eac50;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 50px;
+  width: 100px;
+  cursor: pointer;
+  background: rgba(142, 172, 80, 0.09);
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.25);
 }
