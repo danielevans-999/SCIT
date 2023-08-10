@@ -1,0 +1,26 @@
+
+{%extends 'attachment/students_base.html'%}
+
+{% block content %}
+    <!-- Specific content for this page -->
+   <div id="logbook">
+    <div class="card">
+        <div id="card-header"><h4>UPDATE LOGBOOK</h4></div>
+        <form>
+            <div class="form-group">
+                <label for="date" style="color: #8eac50;">Date</label>
+                <input type="date" id="date" name="date">
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="description" style="color: #8eac50;">Description</label>
+                <textarea cols="69" id="description" name="description"></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit" style="margin-right: 20px;">Submit</button>
+                <a href="#" id="cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+   </div>
+{% endblock %}
