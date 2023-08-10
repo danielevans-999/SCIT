@@ -2,7 +2,6 @@ from django.shortcuts import render
 from .forms import *
 
 # Create your views here.
-
 def register(request):
     
     form = CustomUserCreationForm()
@@ -16,3 +15,6 @@ def register(request):
     
 def login_view(request):
     pass
+
+def update_logbook(request):
+    return render(request, 'attachment/update_logbook.html')
