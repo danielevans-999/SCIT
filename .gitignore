@@ -1,3 +1,5 @@
 /virtual
 /.VScode
 attachment/migrations/
+attachment/__pycache__/
+tracker/__pycache__/
