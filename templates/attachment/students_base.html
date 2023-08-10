@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title></title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
@@ -19,7 +18,11 @@
   </head>
 
   <body>
-    <div class="">
+      <input type="checkbox" id="check">
+       <label for="check">
+        <i class="fa-solid fa-bars" id="btn"></i>
+        <i class="fa-solid fa-times" id="cancel"></i>
+      </label> 
         <div class="sidebar">
             <header>SCIT</header>
             <ul>
@@ -30,8 +33,11 @@
                 <li><a href="#"><i class="fa-solid fa-person-chalkboard"></i>Supervision</a></li>
                 <li><a href="#"><i class="fa-solid fa-power-off"></i>Logout</a></li>
             </ul>
-        </div>  
-    </div>
+        </div> 
+      
+        {%block content%}
+        
+        {% endblock %}
 
     {% block scripts%}
     <!-- Bootstrap 4 JS (Popper.js included) -->
