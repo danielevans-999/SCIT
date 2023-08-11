@@ -72,7 +72,6 @@ class User(AbstractBaseUser):
 class Student(models.Model):
 
     name = models.CharField(max_length=255)
-    date_of_birth = models.DateField()
     course = models.CharField(max_length=255)
     year = models.IntegerField(blank=True, null=True)
     school = models.CharField(max_length=255)
