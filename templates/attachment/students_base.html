@@ -1,5 +1,4 @@
-{% load static %}  
-{% load crispy_forms_tags%}
+{% load static %} {% load crispy_forms_tags%}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,42 +6,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title></title>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="{% static 'css/index.css'%}" />
   </head>
 
   <body>
-      <input type="checkbox" id="check">
-       <label for="check">
-        <i class="fa-solid fa-bars" id="btn"></i>
-        <i class="fa-solid fa-times" id="cancel"></i>
-      </label> 
-        <div class="sidebar">
-            <header>SCIT</header>
-            <ul>
-                <li><a href="#"><i class="fa-sharp fa-solid fa-clipboard-list"></i>Register</a></li>
-                <li><a href="#"><i class="fa-solid fa-briefcase"></i>Internship</a></li>
-                <li><a href="#"><i class="fa-solid fa-list-check"></i>E-LogBook</a></li>
-                <li><a href="#"><i class="fa-sharp fa-solid fa-pen-to-square"></i>Reports</a></li>
-                <li><a href="#"><i class="fa-solid fa-person-chalkboard"></i>Supervision</a></li>
-                <li><a href="#"><i class="fa-solid fa-power-off"></i>Logout</a></li>
-            </ul>
-        </div> 
-      
-        {%block content%}
-        
-        {% endblock %}
+    <input type="checkbox" id="check" />
+    <label for="check">
+      <i class="fa-solid fa-bars" id="btn"></i>
+      <i class="fa-solid fa-times" id="cancel"></i>
+    </label>
+    <div class="sidebar">
+      <header>SCIT</header>
+      <ul>
+        <li>
+          <a href="#"
+            ><i class="fa-sharp fa-solid fa-clipboard-list"></i>Register</a
+          >
+        </li>
+        <li>
+          <a href="#"><i class="fa-solid fa-briefcase"></i>Internship</a>
+        </li>
+        <li>
+          <a href="#"><i class="fa-solid fa-list-check"></i>E-LogBook</a>
+        </li>
+        <li>
+          <a href="#"
+            ><i class="fa-sharp fa-solid fa-pen-to-square"></i>Reports</a
+          >
+        </li>
+        <li>
+          <a href="#"
+            ><i class="fa-solid fa-person-chalkboard"></i>Supervision</a
+          >
+        </li>
+        <li>
+          <a href="#"><i class="fa-solid fa-power-off"></i>Logout</a>
+        </li>
+      </ul>
+    </div>
 
+    {%block content%} {% endblock %} 
+    
     {% block scripts%}
     <!-- Bootstrap 4 JS (Popper.js included) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/index.js' %}"></script>
     {% endblock %}
   </body>
 </html>
