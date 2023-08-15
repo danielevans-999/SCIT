@@ -34,4 +34,5 @@ def update_logbook(request):
     return render(request, 'attachment/update_logbook.html')
 
 def weekly_summary(request):
-    pass
+    return render(request,'attachment/summary.html' )
+    
