@@ -11,6 +11,7 @@
 
 .sidebar {
   position: fixed;
+  top: 0;
   left: -250px;
   width: 250px;
   height: 100%;
@@ -99,15 +100,6 @@ label #cancel {
   margin-left: 250px;
 }
 
-/* section {
-  background: url('https://images.unsplash.com/photo-1596005554384-d293674c91d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE0fHx8ZW58MHx8fHx8&w=1000&q=80');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  height: 100vh;
-  transition: all .5s;
-} */
-
 #logbook {
   margin: 0;
   padding: 0;
@@ -183,4 +175,154 @@ label #cancel {
   cursor: pointer;
   background: rgba(142, 172, 80, 0.09);
   box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.25);
+}
+
+/* Style for the weekly summary */
+
+.table-wrapper {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.table-container {
+  margin-top: 50px;
+  /* border: 1px solid #ccc; */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+.table-container header {
+  background: #8eac50;
+  text-align: center;
+  color: white;
+  padding: 17px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+.table-container p {
+  margin-bottom: 13px;
+}
+
+.table-container p #add-log {
+  background: #8eac50;
+  color: white;
+}
+
+/* Login Form Styles */
+
+.login-wrapper {
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background-image: linear-gradient(rgba(244, 249, 244, 0.7), rgba(244, 249, 244, 0.7)),
+  url('https://images.pexels.com/photos/1939485/pexels-photo-1939485.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+
+.login-container {
+  /* margin-top: 20px; */
+  /* border: 1px solid #ccc; */
+  padding: 15px 40px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+
+}
+
+/* .login-container form{
+  padding: 9px 18px;
+} */
+.login-container label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #8eac50;
+}
+
+.login-container .input-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  border: 1px solid #8eac50;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.login-container .input-container input {
+  padding: 5px;
+  border: none;
+  outline: none;
+}
+.icon {
+  margin-right: 10px;
+  padding: 5px 9px;
+  color: #8eac50;
+  border-right: 1px solid #8eac50;
+  line-height: 7px;
+}
+
+
+.login-container button {
+  width: 100%;
+  text-align: center;
+  padding: 10px 15px;
+  background-color: #8eac50;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.login-container #registation-link {
+  text-align: center;
+}
+
+.login-container #registation-link a {
+  color: #8eac50;
+}
+
+.login-container #login-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+.login-container hr {
+  color: #8eac50;
+}
+
+#or {
+  position: relative;
+  text-align: center;
+  margin: 20px 0;
+  font-size: 9px;
+  color: #8eac50;
+}
+
+#or::before,
+#or::after {
+  content: "";
+  display: inline-block;
+  width: 30%;
+  border: 1px solid #8eac50;
+}
+
+#or::before {
+  margin-right: 10px;
+}
+
+#or::after {
+  margin-left: 10px;
 }
