@@ -1,0 +1,53 @@
+{%extends 'attachment/students_base.html'%} {% block content %}
+
+<div class="table-wrapper">
+  <div class="table-container">
+    <header><h4>E-LogBook</h4></header>
+
+    <p>
+      <a href="#" class="btn" id="add-log">
+        <i class="fa-solid fa-plus"></i>&nbsp; New Entry</a
+      >
+    </p>
+    <table class="centered-table table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>Notes on Work Done</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td scope="row">Monday</td>
+          <td>Today was fun!</td>
+          <td>
+            <span class="badge badge-pill badge-success"
+              ><i class="fa-solid fa-check"></i>&nbsp;Done
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td scope="row">Tuesday</td>
+          <td>Configured Apache2 web server</td>
+          <td>
+            <span class="badge badge-pill badge-danger"
+              ><i class="fa-solid fa-times"></i>&nbsp;uongo!!! hizi ni
+              jaba</span
+            >
+          </td>
+        </tr>
+        <tr>
+          <td scope="row">wednesday</td>
+          <td>Set up router using OSPF protocl</td>
+          <td>
+            <span class="badge badge-pill badge-warning"
+              ><i class="fa-solid fa-check"></i>&nbsp;Pending...</span
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
