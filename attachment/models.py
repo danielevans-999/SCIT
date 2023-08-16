@@ -54,7 +54,7 @@ class User(AbstractBaseUser):
     user_type = models.CharField(max_length=10)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
-
+    updated_profile = models.BooleanField(default=False)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'user_type']
 
@@ -70,7 +70,6 @@ class Student(models.Model):
     registration_number = models.CharField(max_length=255, unique=True)
     course = models.CharField(max_length=255)
     year = models.IntegerField(blank=True, null=True)
-    school = models.CharField(max_length=255)
     department = models.CharField(max_length=255)
     organisation = models.CharField(max_length=255)
     start_date = models.DateField(default=datetime.date.today)
