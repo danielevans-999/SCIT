@@ -257,6 +257,15 @@ label #cancel {
   padding-bottom: 20px;
 }
 
+.errorlist{
+  list-style-type: none;
+  margin-bottom: 3px;
+  padding: 2px 5px;
+  color: crimson;
+  background-color: rgb(228, 200, 200);
+  border-radius: 4px;
+
+}
 
 /* Login Form Styles */
 
