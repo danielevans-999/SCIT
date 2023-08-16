@@ -6,26 +6,38 @@ from .models import *
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('email', 'username')
-        field_order = ['email', 'username',  'password1', 'password2']
+        fields = ('email', 'username', 'user_type')
+
+    USER_TYPES = (
+
+        ('admin', "Admin"),
+        ('employer', "Employer"),
+        ('supervisor', "Supervisor"),
+        ('student', "Student"),
+    )
+    user_type = forms.ChoiceField(widget=forms.Select(attrs={
+        'class': "form-control",
+    }
+    ), choices=USER_TYPES, label='Register As:')
+
     email = forms.Field(widget=forms.EmailInput(attrs={
-        'class': "input",
-        'placeholder': "email"
+        'class': "form-control",
+        'placeholder': "Email"
     }), label='')
 
     username = forms.Field(widget=forms.TextInput(attrs={
-        'class': "input-field",
+        'class': "form-control",
         "placeholder": "username"
     }), label='')
 
-   
+
     password1 = forms.Field(widget=forms.PasswordInput(attrs={
-        'class': "input-field",
+        'class': "form-control",
         "placeholder": "Enter password",
     }), label='')
 
     password2 = forms.Field(widget=forms.PasswordInput(attrs={
-        'class': "input-field",
+        'class': "form-control",
         "placeholder": "confirm password",
 
     }), label='')
