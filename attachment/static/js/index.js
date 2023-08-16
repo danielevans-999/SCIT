@@ -1,8 +1,8 @@
 $(document).ready(function () {
   // Change the date input string to a date object
   document.getElementById("date").valueAsDate = new Date();
-
-  //sending data to the backend
+  
+  //sending log book data to the backend
   $("#logForm").submit(function (e) {
     e.preventDefault();
     let formData = $(this).serialize();
