@@ -1,0 +1,83 @@
+{%extends 'attachment/students_base.html'%} {% block content %}
+<div class="student-wrapper">
+  <div class="student-container">
+    <form method="post" style="width: 400px;">
+        {% csrf_token %}
+      <div class="header">
+        <h4>Update Details</h4>
+      </div>
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          placeholder="John Doe"
+        />
+      </div>
+      <div class="form-group">
+        <label for="registration_number">Reg No</label>
+        <input
+          type="text"
+          class="form-control"
+          id="registration_number"
+          name="registration_number"
+          placeholder="EMMQ/0198/2014"
+        />
+      </div>
+      <div class="form-group">
+        <label for="course">Course</label>
+        <input
+          type="text"
+          class="form-control"
+          id="course"
+          name="course"
+          placeholder="IT"
+        />
+      </div>
+      <div class="form-group">
+        <label for="year">Year</label>
+        <input type="number" class="form-control" id="year" name="year" />
+      </div>
+      <div class="form-group">
+        <label for="department">Department</label>
+        <select class="form-control" id="department" name="department">
+          <option>Information Sytems and Technology</option>
+          <option>Computer Science and Informatics</option>
+          <option>Communication and Computer Networks</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="organisation">Organisation</label>
+        <input
+          type="text"
+          class="form-control"
+          id="organisation"
+          name="organisation"
+          placeholder="e.g Safaricom"
+        />
+      </div>
+      <div class="form-group">
+        <label for="start_date" style="color: #8eac50">Start Date</label>
+        <input
+          type="date"
+          class="form-control"
+          id="start_date"
+          name="start_date"
+        />
+      </div>
+      <div class="form-group">
+        <label for="end_date" style="color: #8eac50">Expected End Date</label>
+        <input
+          type="date"
+          class="form-control"
+          id="end_date"
+          name="end_date"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
