@@ -215,6 +215,49 @@ label #cancel {
   color: white;
 }
 
+/* Registration Form Styles */
+
+.registration-wrapper {
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background-image: linear-gradient(
+      rgba(244, 249, 244, 0.7),
+      rgba(244, 249, 244, 0.7)
+    ),
+    url("https://images.pexels.com/photos/1939485/pexels-photo-1939485.jpeg");
+  background-size: cover;
+  background-position: center;
+}
+
+.registration-container {
+  padding: 15px 40px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  width: 350px;
+}
+
+.registration-container button {
+  width: 100%;
+  text-align: center;
+  padding: 10px 15px;
+  background-color: #8eac50;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.registration-container #login-logo {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+
 /* Login Form Styles */
 
 .login-wrapper {
@@ -224,8 +267,11 @@ label #cancel {
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  background-image: linear-gradient(rgba(244, 249, 244, 0.7), rgba(244, 249, 244, 0.7)),
-  url('https://images.pexels.com/photos/1939485/pexels-photo-1939485.jpeg');
+  background-image: linear-gradient(
+      rgba(244, 249, 244, 0.7),
+      rgba(244, 249, 244, 0.7)
+    ),
+    url("https://images.pexels.com/photos/1939485/pexels-photo-1939485.jpeg");
   background-size: cover;
   background-position: center;
 }
@@ -237,7 +283,6 @@ label #cancel {
   border-radius: 10px;
   box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
-
 }
 
 /* .login-container form{
@@ -271,7 +316,6 @@ label #cancel {
   border-right: 1px solid #8eac50;
   line-height: 7px;
 }
-
 
 .login-container button {
   width: 100%;
@@ -325,4 +369,8 @@ label #cancel {
 
 #or::after {
   margin-left: 10px;
+}
+
+.hidden {
+  display: none;
 }
