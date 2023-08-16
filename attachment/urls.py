@@ -8,7 +8,8 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('login/', login_view, name='login'),
     path('logbook/', update_logbook, name = 'update_logbook'),
-    path('summary/', weekly_summary, name = 'summary')
+    path('summary/', weekly_summary, name = 'summary'),
+    path('student-registration/', student_registration, name = 'student_registration')
 ]
 
 if settings.DEBUG:
