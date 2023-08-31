@@ -1,8 +1,14 @@
-{%extends 'attachment/students_base.html'%} {% block content %}
+{%extends 'attachment/students_base.html'%} {% block content %} {% if status %}
+<div class="profile-header">
+  <i class="fa-sharp fa-solid fa-clipboard-list"></i>
+  <h4>Registered!!</h4>
+</div>
+{% endif %}
 <div class="student-wrapper">
+  {% if not status %}
   <div class="student-container">
-    <form method="post" style="width: 400px;">
-        {% csrf_token %}
+    <form method="post" style="width: 400px"  enctype="multipart/form-data">
+      {% csrf_token %}
       <div class="header">
         <h4>Update Details</h4>
       </div>
@@ -14,6 +20,7 @@
           id="name"
           name="name"
           placeholder="John Doe"
+          required
         />
       </div>
       <div class="form-group">
@@ -24,6 +31,7 @@
           id="registration_number"
           name="registration_number"
           placeholder="EMMQ/0198/2014"
+          required
         />
       </div>
       <div class="form-group">
@@ -34,15 +42,16 @@
           id="course"
           name="course"
           placeholder="IT"
+          required
         />
       </div>
       <div class="form-group">
         <label for="year">Year</label>
-        <input type="number" class="form-control" id="year" name="year" />
+        <input type="number" class="form-control" id="year" name="year" required/>
       </div>
       <div class="form-group">
         <label for="department">Department</label>
-        <select class="form-control" id="department" name="department">
+        <select class="form-control" id="department" name="department" required>
           <option>Information Sytems and Technology</option>
           <option>Computer Science and Informatics</option>
           <option>Communication and Computer Networks</option>
@@ -56,6 +65,7 @@
           id="organisation"
           name="organisation"
           placeholder="e.g Safaricom"
+          required
         />
       </div>
       <div class="form-group">
@@ -65,19 +75,48 @@
           class="form-control"
           id="start_date"
           name="start_date"
+          required
         />
       </div>
       <div class="form-group">
         <label for="end_date" style="color: #8eac50">Expected End Date</label>
+        <input type="date" class="form-control" id="end_date" name="end_date" required />
+      </div>
+      <div class="form-group">
+        <label for="pic" style="color: #8eac50">Photo</label>
         <input
-          type="date"
-          class="form-control"
-          id="end_date"
-          name="end_date"
-        />
+              type="file"
+              accept="image/*"
+              id = "pic"
+              name="pic"
+              class="form-control"
+              style="padding: 20px"
+              required
+            />
       </div>
       <button type="submit" class="btn btn-primary">Update</button>
     </form>
   </div>
+  {% else %}
+  <div class="profile-container">
+    <div class="profile-image">
+      <img
+        src="..{{student.photo_url.url}}"
+        alt="Profile Picture"
+      />
+    </div>
+    <div class="profile-details">
+      <h1>{{student.name}}</h1>
+      <p><b>Registration No:</b> {{student.registration_number}}</p>
+      <p><b>Course:</b> {{student.course}}</p>
+      <p><b>Department:</b> {{student.department}}</p>
+      <p><b>Year:</b> {{student.year}}</p>
+      <p><b>Attachment Organisation:</b> {{student.organisation}}</p>
+      <p><b>Start Date:</b> {{student.start_date}}</p>
+      <!-- Other user details -->
+    </div>
+  </div>
+
+  {% endif %}
 </div>
 {% endblock %}

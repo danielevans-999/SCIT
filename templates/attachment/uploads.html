@@ -1,0 +1,15 @@
+{% extends 'attachment/students_base.html'%} {% block content %}
+<main class="upload-cover">
+  <div class="upload-wrapper">
+    <header>Upload Report</header>
+    <form action="#" id="file-upload" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="file" class="file-input" name="pdf_file" hidden />
+      <i class="fa-solid fa-cloud-arrow-up"></i>
+      <p>Browse File to Uplaod</p>
+    </form>
+    <section class="progress-area"></section>
+    <section class="uploaded-area"></section>
+  </div>
+</main>
+{% endblock %}

@@ -1,51 +1,139 @@
 {%extends 'attachment/students_base.html'%} {% block content %}
 
 <div class="table-wrapper">
+  <!-- Modal -->
+
   <div class="table-container">
     <header><h4>E-LogBook</h4></header>
 
-    <p>
-      <a href="{%url 'update_logbook'%}" class="btn" id="add-log">
-        <i class="fa-solid fa-plus"></i>&nbsp; New Entry</a
-      >
-    </p>
-    <table class="centered-table table table-bordered table-striped">
+    <div id="summary">
+      <p style="margin-right: auto">
+        <a href="{%url 'update_logbook'%}" class="btn" id="add-log">
+          <i class="fa-solid fa-plus"></i>&nbsp; New Entry</a
+        >
+      </p> 
+      <h6 style="margin-right: auto">{% if not week%}{{default_week |capfirst}} {% else %}{{week |capfirst }} {% endif %}</h6>
+      <form method="get">
+        <div class="form-group search-container">
+          <select class="form-control" id="weeks" name="week">
+            <option value=" "></option>
+            <option value="week 1">week 1</option>
+            <option value="week 2">week 2</option>
+            <option value="week 3">week 3</option>
+            <option value="week 4">week 4</option>
+            <option value="week 5">week 5</option>
+            <option value="week 6">week 6</option>
+            <option value="week 7">week 7</option>
+            <option value="week 8">week 8</option>
+            <option value="week 9">week 9</option>
+            <option value="week 10">week 10</option>
+            <option value="week 11">week 11</option>
+            <option value="week 12">week 12</option>
+          </select>
+          <button type="submit"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </form>
+    </div>
+
+    <table
+      class="centered-table table table-bordered table-striped"
+      style="width: 500px"
+    >
       <thead>
         <tr>
           <th>Day</th>
           <th>Notes on Work Done</th>
-          <th>Status</th>
+          <th rowspan="{{logbooks|length}}">Status</th>
         </tr>
       </thead>
       <tbody>
+        {%if logbooks %} {% for logbook in logbooks%}
         <tr>
-          <td scope="row">Monday</td>
-          <td>Today was fun!</td>
-          <td>
+          <div
+            class="modal fade"
+            id="Modal{{logbook.id}}"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">
+                    Edit LogBook
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form
+                    method="post"
+                    action="{% url 'edit_logbook' id=logbook.id%}"
+                  >
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="update_desc" style="color: #8eac50"
+                        >Description</label
+                      >
+                      <textarea
+                        cols="69"
+                        id="update_desc"
+                        name="update_desc"
+                      ></textarea>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-light btn-sm"
+                        data-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                      <button type="" class="btn btn-warning btn-sm">
+                        update
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <td scope="row">{{logbook.date | date:"l"}}</td>
+          <td style="display: flex">
+            <span>{{logbook.description}}</span>
+            <i
+              style="margin-left: auto; color: #709031; cursor: pointer"
+              title="Edit"
+              data-toggle="modal"
+              data-target="#Modal{{logbook.id}}"
+              class="fa-solid fa-pen-to-square"
+            ></i>
+          </td>
+          {% if forloop.first%}
+          <td rowspan="{{logbooks | length }}">
             <span class="badge badge-pill badge-success"
               ><i class="fa-solid fa-check"></i>&nbsp;Done
             </span>
           </td>
+          {% endif %}
         </tr>
+        {% endfor %} {% else %}
         <tr>
-          <td scope="row">Tuesday</td>
-          <td>Configured Apache2 web server</td>
-          <td>
-            <span class="badge badge-pill badge-danger"
-              ><i class="fa-solid fa-times"></i>&nbsp;uongo!!! hizi ni
-              jaba</span
-            >
+          <td colspan="3">
+            <div class="centered">
+              <h4>Not upadated yet</h4>
+            </div>
           </td>
         </tr>
-        <tr>
-          <td scope="row">wednesday</td>
-          <td>Set up router using OSPF protocl</td>
-          <td>
-            <span class="badge badge-pill badge-warning"
-              ><i class="fa-solid fa-check"></i>&nbsp;Pending...</span
-            >
-          </td>
-        </tr>
+        {% endif %}
       </tbody>
     </table>
   </div>

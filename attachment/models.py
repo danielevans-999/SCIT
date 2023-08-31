@@ -74,10 +74,11 @@ class Student(models.Model):
     organisation = models.CharField(max_length=255)
     start_date = models.DateField(default=datetime.date.today)
     end_date = models.DateField(default=datetime.date.today)
+    photo_url = models.ImageField(upload_to="images/")
     assessed_by_employer = models.BooleanField(default=False)
     assessed_by_lecturer = models.BooleanField(default=False)
     user = models.OneToOneField(
-        User, primary_key=True, on_delete=models.CASCADE)
+        User, primary_key=True, on_delete=models.CASCADE, default=None)
 
 
 class LogBook(models.Model):
@@ -88,3 +89,6 @@ class LogBook(models.Model):
 class Reports(models.Model):
     pdf_file  =  models.FileField(upload_to='files/')
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.pdf_file.name
