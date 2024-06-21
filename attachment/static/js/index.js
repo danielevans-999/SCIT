@@ -1,11 +1,80 @@
 $(document).ready(function () {
+  // Supervisor auto suggest
+  // const inputField = document.getElementById("supervisor-input");
+  // const itemList = document.getElementById("item-list");
+
+  // const lec = document.getElementById("lec-selector")
+  // const lecBtn = document.getElementById("#lec-submit")
+  // lec.addEventListener('input', function(){
+  //   let inputValue = this.value.trim();
+  //   lecBtn.disabled = inputValue === ''
+  // })
+
+
+  
+  const inputFields = Array.from(
+    document.getElementsByClassName("supervisor-input")
+  );
+  const itemList = Array.from(document.getElementsByClassName("item-list"));
+
+  inputFields.forEach((element) => {
+    element.addEventListener("input", function () {
+      const search = element.value;
+      fetch(`/attachment/?query=${search}`)
+        .then((response) => response.json())
+        .then((data) => {
+          itemList.forEach((selector) => {
+            selector.innerHTML = "";
+            data.forEach((item) => {
+              const li = document.createElement("li");
+              li.textContent = item;
+              selector.appendChild(li);
+            });
+          });
+        });
+    });
+  });
+
+  itemList.forEach((element) => {
+    element.addEventListener("click", (event) => {
+      if (event.target.tagName === "LI") {
+        inputFields.forEach((input) => {
+          input.value = event.target.textContent;
+          element.innerHTML = "";
+        });
+      }
+    });
+  });
+  // inputField.addEventListener("input", function () {
+  //   const search = inputField.value;
+  //   fetch(`/attachment/admin/?query=${search}`)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       itemList.innerHTML = "";
+  //       data.forEach((item) => {
+  //         const li = document.createElement("li");
+  //         li.textContent = item;
+  //         itemList.appendChild(li);
+  //       });
+  //     });
+  // });
+
+  // itemList.addEventListener("click", (event) => {
+  //   if (event.target.tagName === "LI") {
+  //     inputField.value = event.target.textContent;
+  //     itemList.innerHTML = "";
+  //   }
+  // });
+
+  // Getting the cookie Data
+
   function getCookie(name) {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(";").shift();
   }
-
   const csrfToken = getCookie("csrftoken");
+
   //sending log book data to the backend
   $("#logForm").submit(function (e) {
     e.preventDefault();
@@ -15,15 +84,20 @@ $(document).ready(function () {
       url: "/attachment/logbook/",
       data: formData,
       success: function (response) {
-        alert("Successfully Update");
+        if (response.is_valid) {
+          // window.location.href('http://127.0.0.1:8000/attachment/summary/')
+          alert("Succesffully updated");
+        } 
+        else {
+          alert("LogBook date must come after your attachment start date");
+        }
       },
-      error: function (xhr, textStatus, errorThrown) {},
+      error: function (xhr, textStatus, errorThrown) { },
     });
     this.reset();
   });
 
   // file upload handler
-
   const form = document.querySelector("#file-upload");
   fileInput = form.querySelector(".file-input");
   progressArea = document.querySelector(".progress-area");

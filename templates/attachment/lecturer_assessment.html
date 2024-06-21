@@ -1,0 +1,191 @@
+{%extends 'attachment/lecturer_base.html'%} {% block content %}
+<div class="table-wrapper">
+    <div class="table-container">
+        <header>
+            <h4>Assigned Students</h4>
+        </header>
+        <table class="centered-table table table-bordered table-striped" style="width: 700px">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Reg-No</th>
+                    <th>Course</th>
+                    <th>Year</th>
+                    <th>organisation</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+                {% for student in students%}
+                <tr>
+                    <div class="modal fade" id="Modal-{{student.user.id}}" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document" style="max-width: 50%;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 style="text-align: center; color: #8eac50;">Student Assessment</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form  method="post" action="{% url 'proc_lec_assessment' student.user.id%}">
+                                        {% csrf_token %}
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-md-6" style="border-right: 1px solid #8eac50;">
+                                                    <header>A. ATTITUDE TO WORK</header>
+                                                    <div style="margin-bottom:12px;"><span><b>Respect to Authority
+                                                                :</b></span> <span style="margin-left: auto;"><input
+                                                                type="text"  name ="authority"class="lec-assessment" required> out of (2)</span>
+                                                    </div>
+                                                    <div style="margin-bottom:12px;"><b>Apperance/Grooming:</b>
+                                                        <span><input type="text"  name ="grooming"class="lec-assessment" required> out of
+                                                            (2)</span>
+                                                    </div>
+                                                    <div style="margin-bottom:12px;"><b>Enthusiasm/Initiative:</b>
+                                                        <span><input type="text" name ="enthusiasm" class="lec-assessment" required>out of
+                                                            (2)</span>
+                                                    </div>
+                                                    <div style="margin-bottom:12px;"><b>Panctuality/Regularity:</b>
+                                                        <span><input type="text" name ="regularity" class="lec-assessment" required>out of
+                                                            (2)</span>
+                                                    </div>
+                                                    <div style="margin-bottom:12px;"><b>Outstanding Output:</b>
+                                                        <span><input type="text" name ="achievment" class="lec-assessment" required></span> out of
+                                                        (2)
+                                                    </div>
+                                                    <div style="margin-bottom:12px;"><span><b>Following
+                                                                Instruction:</b></span> <span
+                                                            style="margin-left: auto;"><input type="text" name ="instruction"
+                                                                class="lec-assessment" required> out of (2)</span> </div>
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <header>D. WORK OUTPUT</header>
+                                                    <div style="margin-bottom:12px;"><span><b>Quality of Work
+                                                                :</b></span> <span style="margin-left: auto;"><input
+                                                                type="text" name ="work-quality" class="lec-assessment" required> out of (2)</span>
+                                                    </div>
+                                                    <div style="margin-bottom:12px;"><span><b>Completion of
+                                                                Tasks:</b></span> <span
+                                                            style="margin-left: auto;"><input type="text" name ="task-completion"
+                                                                class="lec-assessment" required> out of (2)</span> </div>
+                                                    <div style="margin-bottom:12px;"><span><b>Adopting to new
+                                                                Skills:</b></span> <span
+                                                            style="margin-left: auto;"><input type="text" name ="new-skills"
+                                                                class="lec-assessment" required> out of (2)</span> </div>
+                                                    <div style="margin-bottom:12px;"><span><b>Work Competence
+                                                                :</b></span> <span style="margin-left: auto;"><input
+                                                                type="text" name="work-competence" class="lec-assessment" required> out of (2)</span>
+                                                    </div>
+                                                    <div style="margin-bottom:12px;"><span><b>Reliability:</b></span>
+                                                        <span style="margin-left: auto;"><input type="text" name ="reliability"
+                                                                class="lec-assessment" required> out of (2)</span>
+                                                    </div>
+                                                    <div style="margin-bottom:12px;"><span><b>Innovation:</b></span>
+                                                        <span style="margin-left: auto;"><input type="text" name="innovation"
+                                                                class="lec-assessment" required> out of (2)</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6" style="border-right: 1px solid #8eac50; border-top:1px solid #8eac50;">
+                                                    <header style="margin-top: 7px;">B. SOCIAL SKILLS</header>
+                                                    <div style="margin-bottom:12px;"><span><b>Team Player:</b></span>
+                                                        <span style="margin-left: auto;"><input type="text" name ="team-player"
+                                                                class="lec-assessment" required> out of (2)</span>
+                                                    </div>
+                                                    <div style="margin-bottom:12px;"><span><b>Integration to Working
+                                                                Team:</b></span> <span style="margin-left: auto;"><input
+                                                                type="text" name="working-integration" class="lec-assessment" required> out of (2)</span>
+                                                    </div>
+                                                    <div style="margin-bottom:12px;"><span><b>Interaction with
+                                                                Others:</b></span> <span
+                                                            style="margin-left: auto;"><input type="text" name ="interaction"
+                                                                class="lec-assessment" required> out of (2)</span> </div>
+                                                    <div style="margin-bottom:12px;"><span><b>Empathy:</b></span> <span
+                                                            style="margin-left: auto;"><input type="text" name ="empathy"
+                                                                class="lec-assessment" required> out of (2)</span> </div>
+                                                    <div style="margin-bottom:12px;"><span><b>Safety
+                                                                Awareness:</b></span> <span
+                                                            style="margin-left: auto;"><input type="text" name="safety-awareness"
+                                                                class="lec-assessment" required> out of (2)</span> </div>
+                                                </div>
+                                                <div class="col-md-6" style="border-top:1px solid #8eac50;">
+                                                    <header style="margin-top: 7px;">E. COMMUNICATION SKILLS</header>
+                                                    <div style="margin-bottom:12px;"><span><b>Written
+                                                                Communication:</b></span> <span
+                                                            style="margin-left: auto;"><input type="text" name ="written-communication"
+                                                                class="lec-assessment" required> out of (2)</span> </div>
+                                                    <div style="margin-bottom:12px;"><span><b>Verbal
+                                                                Communication:</b></span> <span
+                                                            style="margin-left: auto;"><input type="text" name ="verbal-communication"
+                                                                class="lec-assessment" required> out of (2)</span> </div>
+                                                    <div style="margin-bottom:12px;"><span><b>Ability to use Modern
+                                                                Technology:</b></span> <span
+                                                            style="margin-left: auto;"><input type="text" name ="modern-technology"
+                                                                class="lec-assessment" required> out of (2)</span> </div>
+                                                    <div style="margin-bottom:12px;"><span><b>Trade Language
+                                                                Proficiency:</b></span> <span
+                                                            style="margin-left: auto;"><input type="text" name="trade-language"
+                                                                class="lec-assessment" required> out of (2)</span> </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6" style="border-right: 1px solid #8eac50; border-top:1px solid #8eac50;">
+                                                    <header style="margin-top: 7px;">C. PROFESSIONAL APTITUDE</header>
+                                                    <div style="margin-bottom:12px;"><span><b>Application of
+                                                                Professional Ethics:</b></span> <span
+                                                            style="margin-left: auto;"><input type="text" name ="professional-ethics"
+                                                                class="lec-assessment" required> out of (2)</span> </div>
+                                                    <div style="margin-bottom:12px;"><span><b>Current Trends
+                                                                Awareness:</b></span> <span
+                                                            style="margin-left: auto;"><input type="text" name ="current-trends"
+                                                                class="lec-assessment" required> out of (2)</span> </div>
+                                                </div>
+                                                <div class="col-md-6"  style="display: flex; justify-content: center; align-items: center; border-top:1px solid #8eac50;">
+                                                    <p><b>General Lectures's Perception of the attachee:</b><span
+                                                            style="margin-left: auto;"><input type="text" name ="attachee-perception"
+                                                                class="lec-assessment" required> out of (4)</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="remarks">
+                                            <h5>General Remarks:</h5>
+                                            <textarea rows="5" name="lec_remarks"
+                                                required></textarea>
+                                        </div>
+                                        <div class="submit-btn">
+                                            <button type="submit">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <td>{{student.name}}</td>
+                    <td>{{student.registration_number}}</td>
+                    <td>{{student.course}}</td>
+                    <td>{{student.year}}</td>
+                    <td>{{student.organisation}}</td>
+                    <td>  {% if student.assessed_by_lecturer %}
+                        <button type="button"
+                            style="cursor: pointer; margin-left: auto"
+                            class="btn badge badge-pill badge-success">
+                            Assessed <i class="fa-solid fa-check"></i>
+                        </button>
+                        {% else %}
+                        <button type="button" data-toggle="modal" data-target="#Modal-{{student.user.id}}"
+                            style="cursor: pointer; margin-left: auto" title="Grade Student"
+                            class="btn badge badge-pill badge-warning">
+                            Not Graded <i class="fa-solid fa-warning"></i>
+                        </button>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

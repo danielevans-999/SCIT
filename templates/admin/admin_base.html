@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title></title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://icon-library.com/images/icon-for-school/icon-for-school-12.jpg"
+    />
+
+    <link rel="stylesheet" href="{% static 'css/index.css'%}" />
+  </head>
+
+  <body>
+    <input type="checkbox" id="check" />
+    <label for="check">
+      <i class="fa-solid fa-times" id="cancel"></i>
+      <i class="fa-solid fa-bars" id="btn"></i>
+    </label>
+    <div class="sidebar sidebar-admin">
+      <header>SCIT</header>
+      <ul>
+        <li>
+          <a href="{% url 'add_supervisor'%}" style="padding-left: 20px"><i class="fa-solid fa-plus"></i>Add Supervisor</a>
+        </li>
+        <li>
+          <a href="{% url 'admin_students'%}" style="padding-left: 20px"><i class="fa-solid fa-sitemap"></i>Assign Supervisor</a>
+        </li>
+        <li>
+          <a href="{% url 'view_scores'%}" style="padding-left: 20px"><i class="fa-regular fa-star-half-stroke"></i> Scores</a>
+        </li>
+        <li>
+          <a href="{% url 'post_internship'%}" style="padding-left: 20px"><i class="fa-solid fa-briefcase"></i> Internships</a>
+        </li>
+        <li>
+          <a href="{%url 'staff-logout'%}" style="padding-left: 20px"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        </li>
+      </ul>
+    </div>
+    {%block content%} {% endblock %} {% block scripts%}
+    <!-- Bootstrap 4 JS (Popper.js included) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+    {% endblock %}
+  </body>
+</html>

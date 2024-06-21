@@ -1,0 +1,71 @@
+{%extends 'attachment/students_base.html'%} {% block content %}
+
+<form method="post" action="{% url 'request_supervision' %}" class="container">
+    {% csrf_token %}
+  <div
+    class
+    style="
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      height: 50vh;
+      width: 50vw;
+      margin-left: 30%;
+      margin-top: 5%;
+      padding: 50px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+    "
+  >
+
+  <header><h5 style="margin-bottom: 50px; color: #8eac50;">ASSESSMENT REQUEST</h5></header>
+    <div class="form-group" style="width: 70%;">
+      <!-- <label for="supervisor-input">Name:</label> -->
+      <input
+        id="lec-selector"
+        type="text"
+        class="form-control supervisor-input"
+        name="supervisor"
+        placeholder="Type your supervisor's name" 
+        required
+      />
+      <ul class="item-list"></ul>
+    </div>
+    {% if weeks  >= 10 %}
+    <button
+      type="submit"
+      style="
+        background-color: #8eac50;
+        color: white;
+        border: none;
+        width: 80%;
+        border-radius: 100px;
+        padding:  7px;
+        cursor: pointer;
+      "
+    >
+      Request
+    </button>
+    {% else %}
+    <button
+    type="submit"
+    style="
+      background-color: #c5d99c;
+      color: white;
+      border: none;
+      width: 80%;
+      border-radius: 100px;
+      padding: 7px;
+      cursor: pointer;
+    "
+    title="This button is only available after atleast 10 weeks of attachment"
+    disabled
+  >
+  Request 
+  </button>
+  {% endif %}
+  </div>
+</form>
+</div>
+{% endblock %}

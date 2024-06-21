@@ -1,0 +1,107 @@
+{%extends 'admin/admin_base.html'%} {% block content %}
+<div class="table-wrapper">
+  <div class="table-container">
+    <table
+      class="centered-table table table-bordered table-striped"
+      style="width: 700px"
+    >
+      <thead>
+        <tr>
+          <th>Student Name</th>
+          <th>Reg-No</th>
+          <th>Course</th>
+          <th>Year</th>
+          <th>organisation</th>
+          <th>Assigned Supervisor</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for student in students %}
+        <tr>
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="Modal{{student.user.id}}"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">
+                    Assign Supervisor
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="registration">Registration No.</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="registration"
+                        name="registration"
+                        value="{{student.registration_number}}"
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="supervisor-input">Supervisor</label>
+                      <input
+                        id="lec-selector"
+                        type="text"
+                        class="form-control supervisor-input"
+                        name="supervisor"
+                        required
+                      />
+                      <ul class="item-list"></ul>
+                    </div>
+                    <button id="lec-submit" type="submit"  class="btn btn-warning btn-sm">
+                      <i class="fa-solid  fa-plus"></i> Assign Lecturer
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <td>{{student.name}}</td>
+          <td>{{student.registration_number}}</td>
+          <td>{{student.course}} - {{student.class_code}}</td>
+          <td>{{student.year}}</td>
+          <td>{{student.organisation}}</td>
+          <td>
+            {% if student.lecturer != None %}
+            <span class="badge badge-pill badge-success"
+              ><i class="fa-solid fa-check"></i
+            ></span>
+            {% else %}
+            <button
+              type="button"
+              data-toggle="modal"
+              data-target="#Modal{{student.user.id}}"
+              style="cursor: pointer"
+              title="Assign Supervisor"
+              class="btn badge badge-pill badge-warning"
+            >
+              Assign
+            </button>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

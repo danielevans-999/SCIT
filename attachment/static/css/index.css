@@ -9,6 +9,7 @@
   padding: 0;
   list-style-type: none;
   text-decoration: none;
+  scroll-behavior: smooth;
   /* font-family: "Lexend", sans-serif;
   font-family: "Lexend Deca", sans-serif; */
 }
@@ -21,6 +22,7 @@
   height: 100%;
   background: #8eac50;
   transition: all 0.5s ease;
+  z-index: 1000;
 }
 
 .sidebar header {
@@ -276,6 +278,7 @@ label #cancel {
   min-height: 100vh;
   margin: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
@@ -460,6 +463,22 @@ label #cancel {
   background-color: #ffffff;
 }
 
+.student-container form {
+  max-height: 400px;
+  overflow-y: scroll;
+  padding-right: 20px;
+  padding-left: 12px;
+}
+
+.student-container form::-webkit-scrollbar {
+  width: 2px;
+}
+
+.student-container form::-webkit-scrollbar-thumb {
+  background-color: #8eac50;
+  border-radius: 5px;
+  margin: 2px;
+}
 .student-container .header {
   background: #8eac50;
   text-align: center;
@@ -469,6 +488,19 @@ label #cancel {
   border-radius: 5px;
 }
 
+.student-container .center-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.student-container .center-button button {
+  background: #8eac50;
+  color: white;
+  padding: 8px;
+  width: 144px;
+  border-radius: 30px;
+}
 #summary {
   display: flex;
 }
@@ -600,4 +632,316 @@ label #cancel {
 .upload-wrapper .uploaded-area .fa-check {
   color: #8eac50;
   font-size: 16px;
+}
+
+/* Company Supervisor Styles */
+
+/* #employer-assessment {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+#employer-assessment .wrapper {
+  border-radius: 7px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  padding: 50px;
+  width: 600px;
+} */
+
+/* #employer-assessment table {
+  border-collapse: collapse; 
+  color: #8eac50;
+} */
+
+/* #employer-assessment th,
+td {
+  border: 1px solid #8eac50;
+  vertical-align: middle;
+  text-align: center;
+} */
+/* #employer-assessment td:nth-child(2) {
+  text-align: left;
+} */
+#employer-assessment {
+  padding: 10px 20px;
+}
+#employer-assessment .skills {
+  margin-bottom: 50px;
+}
+#employer-assessment input[type="radio"] {
+  margin-right: 10px;
+  appearance: none;
+  padding: 5px;
+  border: 2px solid #e2edcd;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+#employer-assessment input[type="radio"]:checked {
+  background: #8eac50;
+}
+
+#employer-assessment .remarks {
+  margin-top: 15px;
+}
+
+#employer-assessment textarea {
+  width: 100%;
+  max-width: 700px;
+  border: 1px solid #8eac50;
+  border-radius: 2px;
+}
+
+#employer-assessment textarea:focus {
+  outline-color: #8eac50;
+  border-radius: 5px;
+}
+
+#employer-assessment .submit-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+#employer-assessment .submit-btn button {
+  background: #8eac50;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 7px;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+}
+
+#employer-assessment .results {
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  padding: 15px 30px;
+  border-radius: 10px;
+}
+
+#orgs-assement-table th,
+td {
+  border: solid black;
+  vertical-align: middle;
+  text-align: justify;
+}
+
+/* Staff login styles */
+
+.staff-login-wrapper {
+  height: 70vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.staff-login-wrapper .staff-login-container {
+  padding: 20px 25px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  width: 300px;
+}
+
+.staff-login-container .header {
+  background-color: #8eac50;
+  color: white;
+  text-align: center;
+  padding: 10px 15px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.staff-login-container .form-group {
+  width: 100%;
+}
+
+.staff-login-container .form-group > input {
+  width: inherit;
+}
+
+.staff-login-container .submit-button {
+  display: flex;
+  justify-content: center;
+}
+
+.staff-login-container .submit-button button {
+  background: #8eac50;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 7px;
+  width: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+.staff-login-container .submit-button button:focus {
+  outline: none;
+  background: #ffffff;
+  color: #8eac50;
+}
+
+#orgs-logbook-assessment {
+  display: flex;
+  justify-content: center;
+}
+
+#item-list {
+  margin-top: 5px;
+}
+.item-list li {
+  border: 1px solid rgb(191, 191, 241);
+  font-style: italic;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+/* Styling for the dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 150px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 2px;
+}
+
+/* Styling for the dropdown items */
+.dropdown-item {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  color: #333;
+}
+
+/* Hover effect for dropdown items */
+.dropdown-item:hover {
+  background-color: #ddd;
+}
+
+.lec-assessment {
+  width: 8%;
+}
+
+.submit-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.submit-btn button {
+  background: #8eac50;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 7px;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+}
+
+.remarks textarea {
+  width: 100%;
+  border: 1px solid #8eac50;
+}
+
+.remarks textarea:focus {
+  outline: #8eac50;
+}
+
+.internship-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 75%;
+  min-width: 700px;
+  margin-left: 270px;
+  flex-direction: column;
+}
+
+.mycard{
+  width: 100%;
+  max-height: 150px;
+  padding: 20px;
+  cursor: pointer;
+  border-radius: 7px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  margin-bottom: 7px;
+  
+
+}
+.mycard img {
+  border-radius: 50%;
+  margin-right: 12px;
+ 
+}
+
+.mycard .top-div {
+  display: flex; 
+  width: 99%;
+}
+
+.mycard .bottom-div{
+  display: flex;
+  margin-top: 10px;
+}
+
+/* styles.css or your preferred stylesheet */
+.messages {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  
+}
+
+.success {
+  background-color: #dff0d8;
+  border: 1px solid #d6e9c6;
+  color: #3c763d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.error {
+  background-color: #f2dede;
+  border: 1px solid #ebccd1;
+  color: #a94442;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.info {
+  background-color: #d9edf7;
+  border: 1px solid #bce8f1;
+  color: #31708f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.warning {
+  background-color: #fcf8e3;
+  border: 1px solid #faebcc;
+  color: #8a6d3b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+#lec-selector::placeholder{
+  font-style: italic;
+  opacity: 0.3; /* Adjust the opacity to control the fading effect */
 }

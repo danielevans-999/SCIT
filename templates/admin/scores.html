@@ -1,0 +1,86 @@
+{%extends 'admin/admin_base.html'%} {% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-7">
+            <form method="get">
+                <div class="form-group search-container">
+                    <select class="form-control" id="class_code" name="class_code" style="
+              border-top-left-radius: 20px;
+              border-bottom-left-radius: 20px;
+              cursor: pointer;
+            ">
+                        <option value=" "></option>
+                        <option>SCII-2019</option>
+                        <option>SCCI-2019</option>
+                        <option>SCCJ-2019</option>
+                        <option>SCII-2020</option>
+                        <option>SCCI-2020</option>
+                        <option>SCCJ-2020</option>
+                        <option>SCII-2021</option>
+                        <option>SCCI-2021</option>
+                        <option>SCCJ-2021</option>
+                        <option>SCCI-2022</option>
+                        <option>SCCI-2022</option>
+                        <option>SCCJ-2022</op2tion>
+                        <option>SCII-2023</option>
+                        <option>SCCI-2023</option>
+                        <option>SCCJ-2023</option>
+                    </select>
+                    <button type="submit" style="
+              border-top-right-radius: 20px;
+              border-bottom-right-radius: 20px;
+            ">
+                        <i class="fa-solid fa-search"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <class class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+            <table class="centered-table table table-bordered table-striped" >
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Registration No.</th>
+                        <th>Course</th>
+                        <th>Class Code</th>
+                        <th>Company Superviosr Score</th>
+                        <th>Lecturer Score</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if students %}
+                    {% for student in students %}
+
+                    <tr>
+                        <td>{{student.name}}</td>
+                        <td>{{student.registration_number}}</td>
+                        <td>{{student.course}}</td>
+                        <td>{{student.class_code}}</td>
+                        <td>{% if student.organisationassessment.get_score %}{{student.organisationassessment.get_score}} {% else %} 0 {% endif %}/ 40</td>
+                        <td>{% if student.lecturerassessment.total_marks%}{{student.lecturerassessment.total_marks}} {% else %} 0 {% endif %} / 50</td>
+                        <td>{% if student.sum_total and student.grade%} {{student.sum_total}}({{student.grade}}) {% else %} 0 {% endif %}</td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td colspan="7"> <h5 class="text-center">No Students</h5></td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+            {% if students %}
+            <a href='{% url "xls_export" students.0.class_code %}' class="btn btn-sm btn-warning">Export <i class="fa-solid fa-arrow-right"></i></a>
+            {% endif %}
+        </div>
+
+    </class>
+</div>
+
+{% endblock %}

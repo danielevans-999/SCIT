@@ -1,0 +1,167 @@
+{%extends 'admin/admin_base.html'%} {% block content %}
+<div class="table-wrapper">
+  <div class="table-container">
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header" style="text-align: center">
+            <h5 class="modal-title" id="exampleModalLabel">Add Supervisor</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form method="post">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  name="name"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="email">Official Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="faculty">Faculty</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="faculty"
+                  name="faculty"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="school">School</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="school"
+                  name="school"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="department">Department</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="department"
+                  name="department"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="telephone">Phone</label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="telephone"
+                  name="telephone"
+                  required
+                />
+              </div>
+              <div class="modal-footer" style="justify-content: center">
+                <button
+                  type="submit"
+                  class="btn btn-sm"
+                  style="
+                    background: #709031;
+                    color: white;
+                    width: 50%;
+                    border-radius: 30px;
+                  "
+                >
+                  Save
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="header"
+      style="
+        text-align: center;
+        background: #709031;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      "
+    >
+      <h4>Supervisors</h4>
+    </div>
+    <div style="display: flex">
+      <button
+        class="btn"
+        style="
+          margin-left: auto;
+          background-color: #709031;
+          text-decoration: none;
+          color: white;
+          margin-bottom: 10px;
+        "
+        data-toggle="modal"
+        data-target="#exampleModal"
+      >
+        Add +
+      </button>
+    </div>
+    <table
+      class="centered-table table table-bordered table-striped"
+      style="width: 700px"
+    >
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Faculty</th>
+          <th>School</th>
+          <th>Department</th>
+          <th>Telephone</th>
+          <th>Assigned Student(s)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for lecturer in lecturers %}
+        <tr>
+          <td>{{lecturer.name | capfirst }}</td>
+          <td>{{lecturer.official_email}}</td>
+          <td>{{lecturer.faculty}}</td>
+          <td>{{lecturer.school}}</td>
+          <td>{{lecturer.department}}</td>
+          <td>{{lecturer.telephone}}</td>
+          <td>{{lecturer.students.count}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

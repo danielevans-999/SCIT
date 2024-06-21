@@ -1,0 +1,133 @@
+{%extends 'admin/admin_base.html'%} {% block content %}
+{% load humanize %}
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-5"> <h5 class="modal-title text-center" style="color: #8eac50; font-weight: bolder;">ATTACHMENT/INTERNSHIP</h5></div>
+            <div class="col-md-4"></div>
+        </div>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post"  enctype="multipart/form-data" style="padding: 25px;" action="{%url 'post_internship' %}">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="organisation" style="color: #8eac50"
+              >Organisation:</label
+            >
+            <input
+              type="text"
+              name="organisation"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="title" style="color: #8eac50">Job title:</label>
+            <input type="text" name="title" required class="form-control" />
+          </div>
+
+          <div class="form-group">
+            <label for="url" style="color: #8eac50">URL Link:</label>
+            <input type="text" name="url" required class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="description" style="color: #8eac50"
+              >Brief Description:</label
+            >
+            <textarea name="description" class="form-control" required></textarea>
+          </div>
+          <div class="form-group">
+            <label  style="color: #8eac50">Logo:</label>
+            <input
+              type="file"
+              accept="image/*"
+              name="logo"
+              class="form-control"
+              style="padding: 10px"
+              required
+            />
+          </div>
+          <div>
+            <button
+              type="submit"
+              style="
+                background-color: #8eac50;
+                width: 100%;
+                color: white;
+                border-radius: 5px;
+                border: none;
+                cursor: pointer;
+                padding: 10px 10px 10px 10px;
+              "
+            >
+              SUBMIT
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="display: flex; margin-bottom: 17px">
+  <button
+    class="btn btn-small"
+    data-toggle="modal"
+    data-target="#exampleModal"
+    style="background-color: #8eac50; color: white; margin-left: 270px"
+  >
+    POST
+  </button>
+</div>
+<div class="internship-wrapper container">
+    {% for internship  in internships%}
+  <div class="mycard">
+    <div class="top-div">
+      <header>
+        <h6>{{internship.organisation}}: {{internship.title}}</h6>
+      </header>
+      <span style="margin-left: auto"
+        ><small>Posted {{internship.time_stamp | naturaltime  }}</small> 
+        <a href="{{internship.url}}" class="badge badgeipills badge-info">APPLY</a></span
+      >
+    </div>
+    <div class="bottom-div">
+      <img
+        src="..{{internship.logo.url}}"
+        alt="google"
+        height="60px"
+        width="60px"
+      />
+      <p style="font-family: Arial, Helvetica, sans-serif">
+       {{internship.description}}
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-md-11"></div>
+      <div class="col-md-1"></div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

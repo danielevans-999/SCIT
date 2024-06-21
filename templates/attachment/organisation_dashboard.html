@@ -1,0 +1,198 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="{% static 'css/index.css'%}" />
+</head>
+
+<body>
+  <input type="checkbox" id="check" />
+  <label for="check">
+    <i class="fa-solid fa-times" id="cancel"></i>
+    <i class="fa-solid fa-bars" id="btn"></i>
+  </label>
+  <div class="sidebar">
+    <header>SCIT</header>
+    <ul>
+      <li>
+        <a href="{% url 'orgs_supevisor_assessment'%}"><i class="fa-solid fa-briefcase"></i>Grade Student</a>
+      </li>
+      <li>
+        <a href="{% url 'staff-logout'%}"><i class="fa-solid fa-power-off"></i>Logout</a>
+      </li>
+    </ul>
+  </div>
+  <main id="employer-assessment">
+    <div class="table-wrapper">
+      <div class="table-container">
+        <table class="centered-table table table-bordered table-striped" style="width: 700px"
+          id="orgs-assessment-table">
+          <thead>
+            <tr>
+              <th>Student Name</th>
+              <th>Registration No.</th>
+              <th>Supervisor</th>
+              <th>Grading Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for student in students%}
+            <tr>
+              <!-- Modal -->
+              <div class="modal fade" id="Modal-{{student.user.id}}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document" style="max-width: 50%;">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 style="text-align: center; color: #8eac50;">Attachee Assessment ({{student.name}})</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      {% if student.assessed_by_employer %}
+                      <div class="results">
+                        <small style="color: green; text-align: center;">Already Graded!! <i
+                            class="fa-solid fa-check"></i></small>
+                        <h3 style="color: #ffffff; padding:15px; background:#8eac50;">{{student.name}} Scores</h3>
+                        <p><span style="margin-right: 10px;">- Punctuality:</span> {{scores.punctuality}} out of 5</p>
+                        <p><span style="margin-right: 10px;">- Regulations:</span> {{scores.adherence_to_regulation}}
+                          out of 5</p>
+                        <p><span style="margin-right: 10px;">- workmanship:</span> {{scores.workmanship}} out of 5</p>
+                        <p><span style="margin-right: 10px;">- Adaptability:</span> {{scores.adaptability}} out of 5</p>
+                        <p><span style="margin-right: 10px;">- Communication:</span> {{scores.communication}} out of 5
+                        </p>
+                        <p><span style="margin-right: 10px;">- Realiablity:</span> {{scores.reliability}} out of 5</p>
+                        <p><span style="margin-right: 10px;">- Teamwork</span>: {{scores.teamwork}} out of 5</p>
+                        <hr>
+                        <p><b>Total Average score: </b> {{scores.get_score}} / 40</p>
+                      </div>
+                      {% else %}
+                      <form method="post" id="employer-assessment" action="{% url 'proc_assessment' student.user.id%}">
+                        {% csrf_token %}
+                        <div class="skills">
+                          <!-- <input type="hidden" value="{{student.user.id}}" name="user_id"> -->
+                          <label for="technicalSkills"><b>- Panctuality:</b></label>
+                          Excellent &nbsp;<input type="radio" value="5" name="panctuality" required />
+                          Good &nbsp;<input type="radio" value="4" name="panctuality" required />
+                          Average &nbsp;<input type="radio" value="3" name="panctuality" required />
+                          Fair &nbsp;<input type="radio" value="2" name="panctuality" required />
+                          Poor &nbsp;<input type="radio" value="1" name="panctuality" required />
+                        </div>
+                        <div class="skills">
+                          <label for="technicalSkills"><b>- Workmanship:</b></label>
+                          Excellent &nbsp;<input type="radio" value="5" name="workmanship" required />
+                          Good &nbsp;<input type="radio" value="4" name="workmanship" required />
+                          Average&nbsp;<input type="radio" value="3" name="workmanship" required />
+                          Fair &nbsp;<input type="radio" value="2" name="workmanship" required />
+                          Poor &nbsp;<input type="radio" value="1" name="workmanship" required />
+                        </div>
+                        <div class="skills">
+                          <label for="technicalSkills"><b>- Adherence to regulations:</b></label>
+                          Excellent &nbsp;<input type="radio" value="5" name="regulations" required />
+                          Good &nbsp;<input type="radio" value="4" name="regulations" required />
+                          Average &nbsp;<input type="radio" value="3" name="regulations" required />
+                          Fair &nbsp;<input type="radio" value="2" name="regulations" required />
+                          Poor &nbsp;<input type="radio" value="1" name="regulations" required />
+
+                        </div>
+
+                        <div class="skills">
+                          <label for="technicalSkills"><b>- Adaptability:</b></label>
+                          Excellent &nbsp;<input type="radio" value="5" name="adaptability" required />
+                          Good &nbsp;<input type="radio" value="4" name="adaptability" required />
+                          Average &nbsp;<input type="radio" value="3" name="adaptability" required />
+                          Fair &nbsp;<input type="radio" value="2" name="adaptability" required />
+                          Poor &nbsp;<input type="radio" value="1" name="adaptability" required />
+                        </div>
+
+                        <div class="skills">
+                          <label for="technicalSkills"><b>- Communication:</b></label>
+                          Excellent &nbsp;<input type="radio" value="5" name="communication" required />
+                          Good &nbsp;<input type="radio" value="4" name="communication" required />
+                          Average &nbsp;<input type="radio" value="3" name="communication" required />
+                          Fair &nbsp;<input type="radio" value="2" name="communication" required />
+                          Poor &nbsp;<input type="radio" value="1" name="communication" required />
+
+                        </div>
+
+                        <div class="skills">
+                          <label for="technicalSkills"><b>- Reliability:</b></label>
+                          Excellent &nbsp;<input type="radio" value="5" name="reliability" required />
+                          Good &nbsp;<input type="radio" value="4" name="reliability" required />
+                          Average &nbsp;<input type="radio" value="3" name="reliability" required />
+                          Fair &nbsp;<input type="radio" value="2" name="reliability" required />
+                          Poor &nbsp;<input type="radio" value="1" name="reliability" required />
+                        </div>
+                        <div class="skills">
+                          <label for="technicalSkills"><b>- Teamwork:</b></label>
+                          Excellent &nbsp;<input type="radio" value="5" name="teamwork" required />
+                          Good &nbsp;<input type="radio" value="4" name="teamwork" required />
+                          Average &nbsp;<input type="radio" value="3" name="teamwork" required />
+                          Fair &nbsp;<input type="radio" value="2" name="teamwork" required />
+                          Poor &nbsp;<input type="radio" value="1" name="teamwork" required />
+                        </div>
+                        <div class="remarks">
+                          <h5>General Remarks:</h5>
+                          <textarea rows="5" name="assessor_remarks" id="Assessor's Remarks" required></textarea>
+                        </div>
+                        <div class="submit-btn">
+                          <button type="submit">Submit</button>
+                        </div>
+                      </form>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <td style="display: flex">
+                <b>{{student.name}}</b>
+                <a href="{% url 'orgs_logbook_assessment' student.user.id%}" target="_blank" style="margin-left: auto; text-emphasis: none; cursor: pointer; color: #8eac50;" title="View Logbook"><i
+                    class="fa-solid fa-ellipsis-vertical"></i></a>
+              </td>
+              <td>{{student.registration_number}}</td>
+              <td>{{student.supervisor.user.username}}</td>
+              <td>
+                {% if student.assessed_by_employer %}
+                <button class="badge badge-pill badge-success" data-toggle="modal"
+                  data-target="#Modal-{{student.user.id}}" style="margin-left: auto; cursor: pointer;" title="view"><a
+                    href="{% url 'orgs_supevisor_assessment' %}?id={{student.user.id}}" id="openModalLink"
+                    style="cursor: pointer; text-decoration: none;margin-left: auto" class="badge badge-success">View
+                    Grades</a>
+                </button>
+
+                {% else %}
+                <button type="button" data-toggle="modal" data-target="#Modal-{{student.user.id}}"
+                  style="cursor: pointer; margin-left: auto" title="Grade Student"
+                  class="btn badge badge-pill badge-warning">
+                  Not Graded <i class="fa-solid fa-warning"></i>
+                </button>
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+  {% block scripts%}
+  <!-- Bootstrap 4 JS (Popper.js included) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="{% static 'js/index.js' %}"></script>
+  {% endblock %}
+</body>
+
+</html>

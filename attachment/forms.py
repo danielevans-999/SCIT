@@ -6,23 +6,23 @@ from .models import *
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('email', 'username', 'user_type')
+        fields = ('email', 'username')
 
-    USER_TYPES = (
+    # USER_TYPES = (
 
-        ('admin', "Admin"),
-        ('employer', "Employer"),
-        ('supervisor', "Supervisor"),
-        ('student', "Student"),
-    )
-    user_type = forms.ChoiceField(widget=forms.Select(attrs={
-        'class': "form-control",
-    }
-    ), choices=USER_TYPES, label='Register As:')
+    #     ('admin', "Admin"),
+    #     ('employer', "Employer"),
+    #     ('supervisor', "Supervisor"),
+    #     ('student', "Student"),
+    # )
+    # user_type = forms.ChoiceField(widget=forms.Select(attrs={
+    #     'class': "form-control",
+    # }
+    # ), choices=USER_TYPES, label='Register As:')
 
     email = forms.Field(widget=forms.EmailInput(attrs={
         'class': "form-control",
-        'placeholder': "Email"
+        'placeholder': " Use your student email"
     }), label='')
 
     username = forms.Field(widget=forms.TextInput(attrs={

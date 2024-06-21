@@ -24,6 +24,15 @@
 
   <body>
     <div class="login-wrapper">
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </div>
+        <div class="col-md-1"></div>      
+    </div>
       <div class="login-container">
         <div id="login-logo">
           <img src=".././media/images/tuk-logo.jpg" alt="" height="100px" />
@@ -34,7 +43,7 @@
           <label for="email">Email:</label>
           <div class="input-container">
             <i class="icon fas fa-envelope"></i>
-            <input type="email" id="email" name="email" required />
+            <input type="email" id="email" name="email" required  placeholder="email@students.tukenya.ac.ke"/>
           </div>
           <label for="password">Password:</label>
           <div class="input-container">

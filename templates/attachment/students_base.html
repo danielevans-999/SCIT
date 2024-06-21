@@ -25,6 +25,15 @@
   </head>
 
   <body>
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+          {% for message in messages %}
+          <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+      </div>
+      <div class="col-md-4"></div>      
+  </div>
     <input type="checkbox" id="check" />
     <label for="check">
       <i class="fa-solid fa-times" id="cancel"></i>
@@ -39,7 +48,7 @@
           >
         </li>
         <li>
-          <a href="#"><i class="fa-solid fa-briefcase"></i>Internship</a>
+          <a href="{% url 'students_internships'%}"><i class="fa-solid fa-briefcase"></i>Internship</a>
         </li>
         <li>
           <a href="{%url 'summary'%}"
@@ -52,8 +61,8 @@
           >
         </li>
         <li>
-          <a href="#"
-            ><i class="fa-solid fa-person-chalkboard"></i>Supervision</a
+          <a href="{% url 'request_supervision'%}"
+            ><i class="fa-solid fa-person-chalkboard"></i>Request Supervision</a
           >
         </li>
         <li>

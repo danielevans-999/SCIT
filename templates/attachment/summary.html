@@ -8,9 +8,10 @@
 
     <div id="summary">
       <p style="margin-right: auto">
+        {% if not supervisor_comment.status %}
         <a href="{%url 'update_logbook'%}" class="btn" id="add-log">
           <i class="fa-solid fa-plus"></i>&nbsp; New Entry</a
-        >
+        > {% endif %}
       </p> 
       <h6 style="margin-right: auto">{% if not week%}{{default_week |capfirst}} {% else %}{{week |capfirst }} {% endif %}</h6>
       <form method="get">
@@ -107,21 +108,34 @@
             </div>
           </div>
           <td scope="row">{{logbook.date | date:"l"}}</td>
-          <td style="display: flex">
-            <span>{{logbook.description}}</span>
+          <td style="display: flex; width: 300px;">
+            <p>{{logbook.description}}</p>
+            {% if not supervisor_comment.status %}
+            <div  style="margin-left: auto; display: flex;  padding-left: 23px;">
             <i
-              style="margin-left: auto; color: #709031; cursor: pointer"
+             style=" color: #709031; cursor: pointer"
               title="Edit"
               data-toggle="modal"
               data-target="#Modal{{logbook.id}}"
               class="fa-solid fa-pen-to-square"
             ></i>
+            <a href="http://127.0.0.1:8000/attachment/delete_log/?id={{logbook.id}}"><i class="fa-solid fa-trash fa-xs" style=" color: crimson; cursor: pointer; padding: 7px;"></i></a>
+            
+             {% endif %}
+            </div>
           </td>
           {% if forloop.first%}
           <td rowspan="{{logbooks | length }}">
-            <span class="badge badge-pill badge-success"
-              ><i class="fa-solid fa-check"></i>&nbsp;Done
-            </span>
+            {% if supervisor_comment.status %}
+                  <span class="badge badge-pill badge-success"
+                    ><i class="fa-solid fa-check"></i>&nbsp;Done
+                  </span>
+                  <i><b>Supervisor Remarks:</b> {{supervisor_comment.comment}}</i>
+                  {% else %}
+                  <span class="badge badge-pill badge-warning"
+                  ><i class="fa-solid fa-check"></i>&nbsp;waiting review...
+                </span>
+                  {% endif %}
           </td>
           {% endif %}
         </tr>

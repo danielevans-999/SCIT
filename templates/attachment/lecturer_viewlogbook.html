@@ -1,0 +1,32 @@
+{%extends 'attachment/lecturer_base.html'%} {% block content %}
+<div class="table-wrapper">
+    <div class="table-container">
+        <header>
+            <h4>Students Logbooks</h4>
+        </header>
+        <table class="centered-table table table-bordered table-striped" style="width: 700px">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Reg-No</th>
+                    <th>Course</th>
+                    <th>Year</th>
+                    <th>View</th>
+                </tr>
+            </thead>
+            {% for student in students%}
+            <tr>
+                <td>{{student.name}}</td>
+                <td>{{student.registration_number}}</td>
+                <td>{{student.course}}</td>
+                <td>{{student.year}}</td>
+                <td><a
+                    href="{% url 'proc_view_logbook' student.user.id %}" target="_blank"
+                    style="cursor: pointer; text-decoration: none;margin-left: auto; padding: 7px;" class="badge badge-primary">view
+                    </a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title></title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="icon" type="image/png" href="https://icon-library.com/images/icon-for-school/icon-for-school-12.jpg">
+
+    <link rel="stylesheet" href="{% static 'css/index.css'%}" />
+  </head>
+
+  <body>
+{% block content %}
+
+  <div id="orgs-logbook-assessment">
+    <div class="table-wrapper">
+      <div class="table-container">
+        <header>
+          <h4>{{student.name}} | E-LogBook </h4>
+        </header>
+
+        <div id="summary">
+          <h6 style="margin-right: auto">
+            {% if not week%}{{default_week |capfirst}} {% else %}{{week|capfirst }} {% endif %}
+          </h6>
+          <form method="get">
+            <div class="form-group search-container">
+              <select class="form-control" id="weeks" name="week">
+                <option value=" "></option>
+                <option value="week 1">week 1</option>
+                <option value="week 2">week 2</option>
+                <option value="week 3">week 3</option>
+                <option value="week 4">week 4</option>
+                <option value="week 5">week 5</option>
+                <option value="week 6">week 6</option>
+                <option value="week 7">week 7</option>
+                <option value="week 8">week 8</option>
+                <option value="week 9">week 9</option>
+                <option value="week 10">week 10</option>
+                <option value="week 11">week 11</option>
+                <option value="week 12">week 12</option>
+              </select>
+              <button type="submit">
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <table class="centered-table table table-bordered table-striped" style="width: 500px">
+          <thead>
+            <tr>
+              <th>Day</th>
+              <th>Notes on Work Done</th>
+              <th rowspan="{{logbooks|length}}">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%if logbooks %} {% for logbook in logbooks%}
+            <tr>
+              <td scope="row">{{logbook.date | date:"l"}}</td>
+              <td style="display: flex">
+                <span>{{logbook.description}}</span>
+              </td>
+              {% if forloop.first%}
+              <td rowspan="{{logbooks | length }}">
+                {% if supervisor_comment.status %}
+                <span class="badge badge-pill badge-success"><i class="fa-solid fa-check"></i>&nbsp;Done
+                </span>
+                  <br>
+                  <i><b>Supervisor Remarks:</b> {{supervisor_comment.comment}}</i>
+                {% else %}
+                <span class="badge badge-pill badge-warning"><i class="fa-solid fa-check"></i>&nbsp;waiting review...
+                </span>
+                {% endif %}
+              </td>
+              {% endif %}
+            </tr>
+            {% endfor %} {% else %}
+            <tr>
+              <td colspan="3">
+                <div class="centered">
+                  <h4>Not upadated yet</h4>
+                </div>
+              </td>
+            </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  </body>
+{% endblock %}
